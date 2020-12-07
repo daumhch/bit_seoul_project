@@ -2,3 +2,4 @@
 *.npy
 *.tfrecord
 *.wav
+*.pkl

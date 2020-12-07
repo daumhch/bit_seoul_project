@@ -8,7 +8,7 @@ import timeit
 # file_path = './data/same_pitch_diff_velo/vocal_acoustic_000-060-075.wav'
 
 # file_path = './data/nsynth-test/audio/vocal_acoustic_000-060-050.wav'
-file_path = './test/data/048.wav'
+file_path = './test/data/nsynth-test/audio/organ_electronic_007-009-050.wav'
 
 
 start_time = timeit.default_timer() # 시작 시간 체크

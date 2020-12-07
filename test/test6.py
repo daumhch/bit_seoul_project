@@ -11,3 +11,9 @@ print(x_predict.shape)
 
 y_predict = model.predict(x_predict)
 print(y_predict)
+
+
+# 모델을 불러오고
+# 예제로 저장한 파일도 불러와서
+# 돌려보자
+
