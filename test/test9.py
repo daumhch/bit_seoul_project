@@ -15,7 +15,7 @@ convertFregToPitch2 = np.vectorize(convertFregToPitch)
 
 
 CHUNK = 2**10 # 불러오는 음성데이터 갯수
-RATE = 22500 # 샘플링 레이트
+RATE = 8000 # 샘플링 레이트
 sr = RATE
 
 p=pyaudio.PyAudio()
