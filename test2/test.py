@@ -2,18 +2,22 @@ import pyaudio
 import time
 import pylab
 import numpy as np
+import pickle
+
+file_name = './test2/model/temp_model.pkl'
 
 class SWHear(object):
     """
     The SWHear class is made to provide access to continuously recorded
     (and mathematically processed) microphone data.
     """
+    model = pickle.load(open(file_name, "rb"))
 
     def __init__(self,device=None,startStreaming=True):
         """fire up the SWHear class."""
         print(" -- initializing SWHear")
 
-        self.chunk = 4096 # number of data points to read at a time
+        self.chunk = 44100 # number of data points to read at a time
         self.rate = 44100 # time resolution of the recording device (Hz)
 
         # for tape recording (continuous "tape" of recent audio)
@@ -28,18 +32,34 @@ class SWHear(object):
     # pure access to microphone and stream operations
     # keep math, plotting, FFT, etc out of here.
 
+    def convert_fft(self, data):
+        fft = np.fft.fft(data)/len(data)
+        magnitude = np.abs(fft)
+        f = np.linspace(0, self.rate, len(magnitude))
+        pitch_index = np.where((f>10.0) & (f<4200.0))
+        # pitch_freq = f[pitch_index].astype(np.int16)
+        pitch_mag = magnitude[pitch_index]
+        return pitch_mag
+
     def stream_read(self):
         """return values for a single chunk"""
         # data = np.fromstring(self.stream.read(self.chunk),dtype=np.int16)
         data = np.frombuffer(self.stream.read(self.chunk),dtype=np.int16)
-        #print(data)
+        print('before:',data,'/',len(data))
+        data = self.convert_fft(data)
+        data = data.reshape(1,data.shape[0])
+        data = self.model.predict(data)
+        print('data:',data)
         return data
+        
 
     def stream_start(self):
         """connect to the audio device and start a stream"""
         print(" -- stream started")
-        self.stream=self.p.open(format=pyaudio.paInt16,channels=1,
-                                rate=self.rate,input=True,
+        self.stream=self.p.open(format=pyaudio.paInt16,
+                                channels=1,
+                                rate=self.rate,
+                                input=True,
                                 frames_per_buffer=self.chunk)
 
     def stream_stop(self):
@@ -73,7 +93,7 @@ class SWHear(object):
         for i in range(readsInTape):
             self.tape_add()
 
-    def tape_forever(self,plotSec=.25):
+    def tape_forever(self,plotSec=0.25):
         t1=0
         try:
             while True:
@@ -88,7 +108,8 @@ class SWHear(object):
     def tape_plot(self,saveAs="03.png"):
         """plot what's in the tape."""
         pylab.plot(np.arange(len(self.tape))/self.rate,self.tape)
-        pylab.axis([0,self.tapeLength,-2**16/2,2**16/2])
+        # pylab.axis([0,self.tapeLength,-2**16/2,2**16/2])
+        pylab.axis([0,self.tapeLength, 0,200])
         if saveAs:
             t1=time.time()
             pylab.savefig(saveAs,dpi=50)
