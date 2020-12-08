@@ -2,11 +2,11 @@ import numpy as np
 import matplotlib.pyplot as plt
 import librosa
 
-# file_path = './data/nsynth-test/audio/vocal_acoustic_000-060-050.wav'
-file_path = './test/data/048.wav'
+file_path = './test/data/nsynth-test/audio/vocal_acoustic_000-060-050.wav'
 
-y, sr = librosa.load(file_path)
-
+y, sr = librosa.load(file_path, sr=8000, offset=1.0, duration=2.0)
+print("sr:",sr)
+print("y.shape",y.shape)
 fft = np.fft.fft(y)
 magnitude = np.abs(fft)
 f = np.linspace(0, sr, len(magnitude))

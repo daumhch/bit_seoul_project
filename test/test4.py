@@ -10,7 +10,7 @@ def convertFregToPitch(arr):
     return np.round(39.86*np.log10(arr/440.0) + 69.0)
 convertFregToPitch2 = np.vectorize(convertFregToPitch)
 
-path_dir = './data/nsynth-test/audio'
+path_dir = './test/data/nsynth-test/audio'
 file_list = os.listdir(path_dir)
 print("len(file_list):",len(file_list))
 
@@ -29,7 +29,7 @@ for cnt in range(len(file_list)):
     left_f = f[:int(len(magnitude)/2)]
 
     # 미디번호 21~108번에 매칭되는 주파수(27Hz~4186Hz)보다 약간 넓게 슬라이싱
-    pitch_index = np.where((left_f>20.0) & (left_f<4200.0))
+    pitch_index = np.where((left_f>0.0) & (left_f<4200.0))
 
     pitch_freq = left_f[pitch_index]
     pitch_freq = convertFregToPitch2(pitch_freq)
@@ -60,9 +60,9 @@ print(test_wav_data.shape)
 print(test_wav_target.shape)
 
 
-np.save('./data/test_wav_data.npy', arr=test_wav_data)
-np.save('./data/test_wav_target.npy', arr=test_wav_target)
-np.save('./data/test_wav_filename.npy', arr=test_wav_filename)
+np.save('./test/data/test_wav_data.npy', arr=test_wav_data)
+np.save('./test/data/test_wav_target.npy', arr=test_wav_target)
+np.save('./test/data/test_wav_filename.npy', arr=test_wav_filename)
 
 # 주파수 분석 결과를 미디번호로 바꾼 데이터를 npy로 저장함
 
