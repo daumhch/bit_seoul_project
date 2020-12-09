@@ -47,6 +47,21 @@ def ajax():
     return render_template("ajax.html")
 
 
+# 파일업로드
+import os
+import matplotlib.pyplot as plt
+from werkzeug.utils import secure_filename
+UPLOAD_DIR = "D:\\bit_seoul_project\\flask\\static"
+
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    if request.method == "POST":
+        f = request.files['myfile']
+        fname = secure_filename(f.filename)
+        path = os.path.join(UPLOAD_DIR, fname)
+        f.save(path)
+        return render_template('upload.html', fname=fname, path=path)
+    return render_template("upload.html", data='please upload image')
 
 
 if __name__ == '__main__':

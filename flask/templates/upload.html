@@ -1,0 +1,19 @@
+
+
+<html>
+<head>
+    <title>upload page</title>
+</head>
+<body>
+    {{data}}
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        파일명 : <input type="file" name="myfile"><br>
+        <br>
+        <button type="submit">제출하기</button>
+    </form>
+    {% if fname %}
+    <img src="{{ url_for('static', filename=fname) }}"><br>
+    저장위치는, {{path}}
+    {% endif %}    
+</body>
+</html>
