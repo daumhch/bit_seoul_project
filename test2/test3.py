@@ -4,7 +4,7 @@ import librosa
 import librosa.display
 import time
 
-SR = 22050
+SR = 11025
 
 file_path = './test/data/nsynth-test/audio/vocal_acoustic_000-060-050.wav'
 y, sr = librosa.load(file_path, 

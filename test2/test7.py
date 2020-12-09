@@ -3,8 +3,8 @@ import numpy as np
 import time
 import pickle
 
-CHUNK = 4190
-RATE = 44100
+CHUNK = 11025
+RATE = 11025
 
 file_name = './test2/model/temp_model.pkl'
 model = pickle.load(open(file_name, "rb"))

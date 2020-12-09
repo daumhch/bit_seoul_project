@@ -5,7 +5,7 @@ import librosa
 import librosa.display
 import timeit
 
-SR = 22050
+SR = 11025
 
 # 사용자 함수 - 주파수를 미디번호로 바꾸기 A4=440Hz=69번
 

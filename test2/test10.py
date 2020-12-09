@@ -5,8 +5,8 @@ import pickle
 
 pca_reload = pickle.load(open("./test2/model/pca.pkl",'rb'))
 
-CHUNK = 22050
-RATE = 22050
+CHUNK = 11025
+RATE = 11025
 
 file_name = './test2/model/temp_model.pkl'
 model = pickle.load(open(file_name, "rb"))
