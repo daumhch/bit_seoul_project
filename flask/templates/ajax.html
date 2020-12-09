@@ -1,0 +1,29 @@
+<html>
+<head>
+    <title>ajax</title>
+    <script type="text/javascript">
+    function do_ajax() {
+        var request = new XMLHttpRequest();
+        var result = document.getElementById('result');
+        request.onreadystatechange = function() {
+            if(this.readyState == 4 && this.status == 200) {
+                result.innerHTML = this.responseText;
+            }
+        }
+        request.open('POST', '/ajax', true);
+
+        let msg = {name: document.getElementById('name').value};
+        let msgjson = JSON.stringify(msg);
+        request.setRequestHeader('content-type', 'application/json;charset=UTF-8');
+        request.send(msgjson);
+    }
+    </script>
+</head>
+<body>
+    <form action="index" method="post">
+        <label>Name:<input type="text" id="name" value="" /></label>
+        <button type="button" id="btn-post" onclick="do_ajax();">Click</button>
+        <div id="result"></div>
+    </form>
+</body>
+</html>
