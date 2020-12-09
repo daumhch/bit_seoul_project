@@ -19,7 +19,7 @@ cumsum = np.cumsum(pca.explained_variance_ratio_)
 d = np.argmax(cumsum >= cumsum_standard) +1
 print("n_components:",d)
 
-pca = PCA(n_components=0.95)
+pca = PCA(n_components=d)
 test_wav_data = pca.fit_transform(test_wav_data)
 print("after test_wav_data.shape:", test_wav_data.shape)
 

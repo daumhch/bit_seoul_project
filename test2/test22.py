@@ -23,7 +23,7 @@ fft = np.fft.fft(y)
 magnitude = np.abs(fft)
 print("magnitude.shape:", magnitude.shape)
 f = np.linspace(0, sr, len(magnitude))
-pitch_index = np.where((f>10.0) & (f<4200.0))
+pitch_index = np.where((f>110.0) & (f<1000.0))
 pitch_freq = f[pitch_index].astype(np.int16)
 pitch_mag = magnitude[pitch_index]
 
