@@ -5,6 +5,8 @@ import librosa
 import librosa.display
 import timeit
 
+SR = 22050
+
 # 사용자 함수 - 주파수를 미디번호로 바꾸기 A4=440Hz=69번
 
 path_dir = './test/data/nsynth-test/audio'
@@ -17,8 +19,8 @@ test_wav_target = []
 test_wav_filename = []
 
 for cnt in range(len(file_list)):
-    y, sr = librosa.load(path_dir+'/'+file_list[cnt], sr=44100, offset=1.0, duration=1.0)
-    fft = np.fft.fft(y)/len(y)
+    y, sr = librosa.load(path_dir+'/'+file_list[cnt], sr=SR, offset=1.0, duration=1.0)
+    fft = np.fft.fft(y)
     magnitude = np.abs(fft)
     f = np.linspace(0, sr, len(magnitude))
     pitch_index = np.where((f>10.0) & (f<4200.0))

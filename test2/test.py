@@ -33,30 +33,31 @@ class SWHear(object):
     # keep math, plotting, FFT, etc out of here.
 
     def convert_fft(self, data):
-        fft = np.fft.fft(data)/len(data)
+        fft = np.fft.fft(data)
         magnitude = np.abs(fft)
         f = np.linspace(0, self.rate, len(magnitude))
         pitch_index = np.where((f>10.0) & (f<4200.0))
         # pitch_freq = f[pitch_index].astype(np.int16)
         pitch_mag = magnitude[pitch_index]
-        return pitch_mag
+        y_predict = 0
+        if max(pitch_mag) > 50:
+            pitch_mag = pitch_mag.reshape(1,pitch_mag.shape[0])
+            y_predict = self.model.predict(pitch_mag)
+        print(y_predict)
+        return y_predict
 
     def stream_read(self):
         """return values for a single chunk"""
         # data = np.fromstring(self.stream.read(self.chunk),dtype=np.int16)
-        data = np.frombuffer(self.stream.read(self.chunk),dtype=np.int16)
-        print('before:',data,'/',len(data))
+        data = np.frombuffer(self.stream.read(self.chunk),dtype=np.float32)
         data = self.convert_fft(data)
-        data = data.reshape(1,data.shape[0])
-        data = self.model.predict(data)
-        print('data:',data)
         return data
-        
+
 
     def stream_start(self):
         """connect to the audio device and start a stream"""
         print(" -- stream started")
-        self.stream=self.p.open(format=pyaudio.paInt16,
+        self.stream=self.p.open(format=pyaudio.paFloat32,
                                 channels=1,
                                 rate=self.rate,
                                 input=True,

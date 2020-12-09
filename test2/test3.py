@@ -4,9 +4,13 @@ import librosa
 import librosa.display
 import time
 
+SR = 22050
 
 file_path = './test/data/nsynth-test/audio/vocal_acoustic_000-060-050.wav'
-y, sr = librosa.load(file_path, sr=44100, offset=1.0, duration=1.0)
+y, sr = librosa.load(file_path, 
+                        sr=SR, 
+                        offset=1.0, 
+                        duration=1.0)
 print("sr:",sr)
 print("y.shape",y.shape)
 plt.figure(figsize=(14, 5))
