@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Audio input demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/audio.css') }}">
+
+        <script src='{{ url_for('static', filename='js/audio.js') }}'></script>
+
+  </head>
+  <body>
+    <h1>VU meter from mic input (getUserMedia API)</h1>
+    <p id='temp'></p>
+    <canvas id="canvas" width="150" height="300"></canvas>
+  </body>
+</html>

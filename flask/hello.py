@@ -70,10 +70,22 @@ from flask import render_template
 def keyboard():
     return render_template("keyboard.html")
 
+# html 파일 연결하기
+from flask import render_template
+@app.route('/audio')
+def audio():
+    return render_template("audio.html")
+
+# html 파일 연결하기
+from flask import render_template
+@app.route('/audio2')
+def audio2():
+    return render_template("audio2.html")
+
 
 if __name__ == '__main__':
-    # app.run()
-    app.run(host='0.0.0.0')
+    app.run()
+    # app.run(host='0.0.0.0')
 
 
 
