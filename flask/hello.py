@@ -64,8 +64,16 @@ def upload():
     return render_template("upload.html", data='please upload image')
 
 
+# html 파일 연결하기
+from flask import render_template
+@app.route('/keyboard')
+def keyboard():
+    return render_template("keyboard.html")
+
+
 if __name__ == '__main__':
-    app.run()
+    # app.run()
+    app.run(host='0.0.0.0')
 
 
 
