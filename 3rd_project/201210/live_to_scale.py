@@ -8,7 +8,7 @@ RATE = 44100
 SR = 44100
 OFFSET = 48
 MIDI_NUMS = [i for i in range(48,85)]
-MODEL = pickle.load(open('./model/modelLoad/modelFolder/lgbm_11025sr.dat', 'rb'))
+MODEL = pickle.load(open('./3rd_project/201210/model/lgbm_11025sr.dat', 'rb'))
 SCALE = ['C','D','E', 'F', 'G', 'A', 'B']
 
 def convertFregToPitch(arr):

@@ -19,22 +19,22 @@ RATE = 44100
 SR = 44100
 OFFSET = 48
 MIDI_NUMS = [i for i in range(48,85)]
-MODEL = pickle.load(open('./model/modelLoad/modelFolder/lgbm_11025sr.dat', 'rb'))
+MODEL = pickle.load(open('./3rd_project/201210/model/lgbm_11025sr.dat', 'rb'))
 SCALE = ['C','D','E', 'F', 'G', 'A', 'B']
 
 #오디오 스트림 생성
 p=pyaudio.PyAudio()
 stream=p.open(format=pyaudio.paFloat32,channels=1,rate=RATE,input=True,
-              frames_per_buffer=CHUNK)
- 
+                frames_per_buffer=CHUNK)
+
 def main():
     # set screen, fps
     screen = pygame.display.set_mode((MAX_WIDTH, MAX_HEIGHT))
     fps = pygame.time.Clock()
  
     # dino
-    imgDino1 = pygame.image.load('images/dino1.png')
-    imgDino2 = pygame.image.load('images/dino2.png')
+    imgDino1 = pygame.image.load('./3rd_project/201210/images/dino1.png')
+    imgDino2 = pygame.image.load('./3rd_project/201210/images/dino2.png')
     dino_height = imgDino1.get_size()[1]
     dino_bottom = MAX_HEIGHT - dino_height
     dino_x = 50
@@ -45,7 +45,7 @@ def main():
     is_go_up = False
  
     # tree
-    imgTree = pygame.image.load('images/tree.png')
+    imgTree = pygame.image.load('./3rd_project/201210/images/tree.png')
     tree_height = imgTree.get_size()[1]
     tree_x = MAX_WIDTH
     tree_y = MAX_HEIGHT - tree_height
