@@ -3,3 +3,4 @@
 *.tfrecord
 *.wav
 *.pkl
+test/data/*

@@ -92,3 +92,8 @@ best_params = RSCV.best_params_
 print("최적의 파라미터:", best_params)
 print("RSCV fit 소요 시간: %.3fs" %((time.time() - start_time)) )
 
+
+
+best_model = RSCV.best_estimator_
+score = best_model.score(x_test, y_test)
+print("best_model score:", score)

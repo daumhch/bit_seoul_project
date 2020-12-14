@@ -76,8 +76,15 @@ def search(dirname):
     return np.array(x_arr), np.array(y_arr)
 
 
-x, y = search('D:/bit_seoul_project/test/data/nsynth-test/audio')
+# x, y = search('D:/bit_seoul_project/test/data/nsynth-test/audio')
+x, y = search('D:/bit_seoul_project/test/data/nsynth-train/audio')
 
 
-np.save('./3rd_project/201210/data/all_scale_x_11025sr.npy', arr=x)
-np.save('./3rd_project/201210/data/all_scale_y_11025sr.npy', arr=y)
+# np.save('./3rd_project/201210/data/all_scale_x_11025sr.npy', arr=x)
+# np.save('./3rd_project/201210/data/all_scale_y_11025sr.npy', arr=y)
+
+np.save('./3rd_project/201210/data/x_train_11025sr.npy', arr=x)
+np.save('./3rd_project/201210/data/y_train_11025sr.npy', arr=y)
+# 28만개 train데이터의 48~84번 변환 데이터 = 146319개
+
+
