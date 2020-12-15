@@ -33,7 +33,7 @@ def search(dirname):
 
         # 복소공간 값 절댓갑 취해서, magnitude 구하기
         fft = np.fft.fft(sig)
-        magnitude = np.abs(fft) 
+        magnitude = np.abs(fft)
 
         # Frequency 값 만들기
         f = np.linspace(0,sr,len(magnitude))
