@@ -4,3 +4,5 @@
 *.wav
 *.pkl
 test/data/*
+*.hdf5
+*.h5
