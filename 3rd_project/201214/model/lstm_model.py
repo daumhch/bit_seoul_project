@@ -47,7 +47,7 @@ model.compile(loss='sparse_categorical_crossentropy',
                         optimizer='adam')
 
 ealystopping = EarlyStopping(monitor='loss',
-                            patience=100,
+                            patience=10,
                             mode='auto',
                             verbose=1)
 
@@ -58,7 +58,7 @@ model_check_point = ModelCheckpoint(
     mode='auto')
 
 hist = model.fit(x_train, y_train, 
-                    epochs=10000, 
+                    epochs=100, 
                     batch_size=512, 
                     validation_data=(x_val, y_val), 
                     callbacks=[ealystopping, model_check_point])

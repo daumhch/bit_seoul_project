@@ -8,8 +8,8 @@ from sklearn.model_selection import train_test_split
 import pickle
 RANDOM = 44
 
-x = np.load('./3rd_project/201214/data/x_val_11025sr.npy')
-y = np.load('./3rd_project/201214/data/y_val_11025sr.npy')
+x = np.load('./3rd_project/201214/data/all_scale_x_11025sr.npy')
+y = np.load('./3rd_project/201214/data/all_scale_y_11025sr.npy')
 
 x = x.reshape(x.shape[0], x.shape[1], 1)
 y = y - 48
